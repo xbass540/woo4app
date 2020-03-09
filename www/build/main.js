@@ -9,7 +9,7 @@ webpackJsonp([0],{
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(58);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_woocommerce_api__ = __webpack_require__(96);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_woocommerce_api___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_woocommerce_api__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(629);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(348);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -47,31 +47,64 @@ var ProductDetailsPage = /** @class */ (function () {
     ProductDetailsPage.prototype.addToCart = function (product) {
         var _this = this;
         this.storage.get("cart").then(function (data) {
-            if (data == null || data.length == 0) {
+            if (data == undefined || data.length == 0) {
                 data = [];
                 data.push({
                     "product": product,
                     "qty": 1,
                     "amount": parseFloat(product.price)
                 });
+                if (_this.selectedVariation) {
+                    data[0].variation = _this.selectedVariation;
+                    data[0].amount = parseFloat(_this.selectedVariation.price);
+                }
             }
             else {
-                var added = 0;
+                var alreadyAdded = false;
+                var alreadyAddedIndex = -1;
                 for (var i = 0; i < data.length; i++) {
-                    if (product.id == data[i].product.id) {
-                        var qty = data[i].qty;
-                        console.log("Product is already in the cart");
-                        data[i].qty = qty + 1;
-                        data[i].amount = parseFloat(data[i].amount) + parseFloat(data[i].product.price);
-                        added = 1;
+                    if (data[i].product.id == product.id) {
+                        if (_this.productVariations.length > 0) {
+                            if (data[i].variation.id == _this.selectedVariation.id) {
+                                alreadyAdded = true;
+                                alreadyAddedIndex = i;
+                                break;
+                            }
+                        }
+                        else {
+                            alreadyAdded = true;
+                            alreadyAddedIndex = i;
+                            break;
+                        }
                     }
                 }
-                if (added == 0) {
-                    data.push({
-                        "product": product,
-                        "qty": 1,
-                        "amount": parseFloat(product.price)
-                    });
+                if (alreadyAdded == true) {
+                    if (_this.selectedVariation) {
+                        data[alreadyAddedIndex].qty = parseFloat(data[alreadyAddedIndex].qty) + 1;
+                        data[alreadyAddedIndex].amount = parseFloat(data[alreadyAddedIndex].amount) + parseFloat(_this.selectedVariation.price);
+                        data[alreadyAddedIndex].variation = _this.selectedVariation;
+                    }
+                    else {
+                        data[alreadyAddedIndex].qty = parseFloat(data[alreadyAddedIndex].qty) + 1;
+                        data[alreadyAddedIndex].amount = parseFloat(data[alreadyAddedIndex].amount) + parseFloat(data[alreadyAddedIndex].product.price);
+                    }
+                }
+                else {
+                    if (_this.selectedVariation) {
+                        data.push({
+                            product: product,
+                            qty: 1,
+                            amount: parseFloat(_this.selectedVariation.price),
+                            variation: _this.selectedVariation
+                        });
+                    }
+                    else {
+                        data.push({
+                            product: product,
+                            qty: 1,
+                            amount: parseFloat(product.price)
+                        });
+                    }
                 }
             }
             _this.storage.set("cart", data).then(function () {
@@ -142,7 +175,7 @@ webpackEmptyAsyncContext.id = 237;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__home_home__ = __webpack_require__(282);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_woocommerce_api__ = __webpack_require__(96);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_woocommerce_api___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_woocommerce_api__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__products_by_category_products_by_category__ = __webpack_require__(348);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__products_by_category_products_by_category__ = __webpack_require__(350);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -324,7 +357,7 @@ var HomePage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 348:
+/***/ 350:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -404,13 +437,13 @@ var ProductsByCategoryPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 349:
+/***/ 351:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(350);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(372);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(352);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(374);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -418,7 +451,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 372:
+/***/ 374:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -426,14 +459,14 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(58);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__(415);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__(417);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(282);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_menu_menu__ = __webpack_require__(281);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_products_by_category_products_by_category__ = __webpack_require__(348);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_products_by_category_products_by_category__ = __webpack_require__(350);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_product_details_product_details__ = __webpack_require__(187);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_status_bar__ = __webpack_require__(277);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_splash_screen__ = __webpack_require__(280);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_storage__ = __webpack_require__(629);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_storage__ = __webpack_require__(348);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -492,7 +525,7 @@ var AppModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 415:
+/***/ 417:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -549,13 +582,6 @@ var MyApp = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 437:
-/***/ (function(module, exports) {
-
-/* (ignored) */
-
-/***/ }),
-
 /***/ 439:
 /***/ (function(module, exports) {
 
@@ -563,26 +589,33 @@ var MyApp = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 469:
+/***/ 441:
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
 
-/***/ 470:
+/***/ 471:
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
 
-/***/ 536:
+/***/ 472:
+/***/ (function(module, exports) {
+
+/* (ignored) */
+
+/***/ }),
+
+/***/ 538:
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ })
 
-},[349]);
+},[351]);
 //# sourceMappingURL=main.js.map
