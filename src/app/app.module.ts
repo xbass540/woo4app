@@ -12,6 +12,7 @@ import {ProductDetailsPage} from '../pages/product-details/product-details';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { IonicStorageModule } from '@ionic/storage';
+import { CartPage } from '../pages/cart/cart';
 
 
 
@@ -21,7 +22,8 @@ import { IonicStorageModule } from '@ionic/storage';
     HomePage,
     MenuPage,
     ProductsByCategoryPage,
-    ProductDetailsPage
+    ProductDetailsPage,
+    CartPage
   ],
   imports: [
     BrowserModule,
@@ -34,7 +36,8 @@ import { IonicStorageModule } from '@ionic/storage';
     HomePage,
     MenuPage,
     ProductsByCategoryPage,
-    ProductDetailsPage
+    ProductDetailsPage,
+    CartPage
   ],
   providers: [
     StatusBar,

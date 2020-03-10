@@ -11,6 +11,12 @@
 </ion-header>
 
 <ion-content>
+
+  <ion-fab top right edge (click)="openCart()">
+    <button ion-fab color="danger"><ion-icon name="cart"></ion-icon></button>
+  </ion-fab>
+
+
 <ion-card>  <ion-slides>
   <ion-slide *ngFor="let image of product.images">
     <img [src]="image.src" alt="">
