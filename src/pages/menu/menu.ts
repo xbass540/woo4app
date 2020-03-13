@@ -2,6 +2,7 @@ import { Component , ViewChild } from '@angular/core';
 import { NavController, NavParams,ToastController,ModalController } from 'ionic-angular';
 import {HomePage} from '../home/home';
 import { SignupPage } from '../signup/signup';
+import { LoginPage } from '../login/login';
 import * as WC from 'woocommerce-api';
 import {ProductsByCategoryPage} from '../products-by-category/products-by-category';
  /**
@@ -87,7 +88,7 @@ export class MenuPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad MenuPage');
   }
-//opens category page of a specific category
+//opens category page of a specific category 
   openCategoryPage(category){
     this.childNavCtrl.setRoot(ProductsByCategoryPage,{"category":category});
   }
@@ -97,6 +98,9 @@ export class MenuPage {
   openPage(pageName: string){
     if(pageName == "signup"){
       this.navCtrl.push(SignupPage);
+    }
+    if(pageName == "login"){
+      this.navCtrl.push(LoginPage);
     }
   
 
