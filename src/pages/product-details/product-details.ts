@@ -4,6 +4,8 @@ import * as WC from 'woocommerce-api';
 import { Storage } from '@ionic/storage';
 import { CartPage } from '../cart/cart';
 
+
+
 @Component({
   selector: 'page-product-details',
   templateUrl: 'product-details.html',
