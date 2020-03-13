@@ -49,6 +49,7 @@ export class SignupPage {
       //email looks valid
 
       this.WooCommerce.getAsync('customers/email/' + this.newUser.email).then( (data) => {
+        console.log(JSON.parse(data.body));
         let res = (JSON.parse(data.body));
 
         if(res.errors){
@@ -63,7 +64,7 @@ export class SignupPage {
           validEmail = false;
 
           this.toastCtrl.create({
-            message: "Email already registered. Please check.",
+            message: "Email already registered. Please log in instead.",
             showCloseButton: true
           }).present();
         }

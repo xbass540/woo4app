@@ -189,6 +189,7 @@ var SignupPage = /** @class */ (function () {
         if (reg.test(this.newUser.email)) {
             //email looks valid
             this.WooCommerce.getAsync('customers/email/' + this.newUser.email).then(function (data) {
+                console.log(JSON.parse(data.body));
                 var res = (JSON.parse(data.body));
                 if (res.errors) {
                     validEmail = true;
@@ -200,7 +201,7 @@ var SignupPage = /** @class */ (function () {
                 else {
                     validEmail = false;
                     _this.toastCtrl.create({
-                        message: "Email already registered. Please check.",
+                        message: "Email already registered. Please log in instead.",
                         showCloseButton: true
                     }).present();
                 }
