@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, ModalController, ViewController } from 'ionic-angular';
 import {Storage} from '@ionic/storage';
-
+import { CheckoutPage } from '../checkout/checkout';
+import { LoginPage } from '../login/login';
 
 @Component({
   selector: 'page-cart',
@@ -14,7 +15,7 @@ export class CartPage {
   showEmptyCartMessage: boolean = false;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public storage:Storage, public viewCtrl: ViewController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public viewCtrl: ViewController) {
 
 
     this.total = 0.0;
@@ -70,5 +71,19 @@ export class CartPage {
   closeModal(){
     this.viewCtrl.dismiss();
   }
+
+//checkout 
+checkout(){
+
+  this.storage.get("userLoginInfo").then( (data) => {
+    if(data != null){
+      this.navCtrl.push(CheckoutPage);
+    } else {
+      this.navCtrl.push(LoginPage, {next: CheckoutPage})
+    }
+  })
+
+}
+
 
 }
