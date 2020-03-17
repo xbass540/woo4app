@@ -44,7 +44,7 @@ export class MenuPage {
     let temp:any[]= JSON.parse(data.body).product_categories;
 
     for(let i=0;i<temp.length;i++){
-      if(temp[i].parent == 0 ){
+      if(temp[i].slug == 'advanced-styling' || temp[i].slug== 'belly-basic' || temp[i].slug== 'belly-intermediate-classes' || temp[i].slug== 'express-pass' || temp[i].slug== 'multi-pass' || temp[i].slug== 'single-taster'){
           this.categories.push(temp[i]);
           console.log(temp[i]);
 

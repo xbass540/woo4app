@@ -15,7 +15,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { CartPage } from '../pages/cart/cart';
 import { SignupPage } from '../pages/signup/signup';
 import { LoginPage } from '../pages/login/login';
-
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -30,6 +30,7 @@ import { LoginPage } from '../pages/login/login';
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot()
   ],
