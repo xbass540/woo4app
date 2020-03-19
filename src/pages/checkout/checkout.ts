@@ -9,7 +9,7 @@ import { PayPal, PayPalPayment, PayPalConfiguration } from '@ionic-native/paypal
   selector: 'page-checkout',
   templateUrl: 'checkout.html',
 })
-export class Checkout {
+export class CheckoutPage {
 
   WooCommerce: any;
   newOrder: any;
