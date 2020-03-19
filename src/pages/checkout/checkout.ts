@@ -9,7 +9,7 @@ import { PayPal, PayPalPayment, PayPalConfiguration } from '@ionic-native/paypal
   selector: 'page-checkout',
   templateUrl: 'checkout.html',
 })
-export class Checkout {
+export class CheckoutPage {
 
   WooCommerce: any;
   newOrder: any;
@@ -30,10 +30,11 @@ export class Checkout {
       { method_id: "cod", method_title: "Cash on Delivery" },
       { method_id: "paypal", method_title: "PayPal" }];
 
-    this.WooCommerce = WC({
+      this.WooCommerce = WC ({
         url:"https://woocommerce-251774-1115146.cloudwaysapps.com",
         consumerKey: "ck_6c9779a96e5377a4b28df5a1aca2e8c6dbbfaae3",
         consumerSecret: "cs_5dc2811ed708448a3dfc889a0921e2e266b25813"
+  
     });
 
     this.storage.get("userLoginInfo").then((userLoginInfo) => {
