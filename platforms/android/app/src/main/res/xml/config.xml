@@ -21,6 +21,9 @@
     <feature name="PayPalMobile">
         <param name="android-package" value="com.paypal.cordova.sdk.PayPalMobileCordovaPlugin" />
     </feature>
+    <feature name="OneSignalPush">
+        <param name="android-package" value="com.plugin.gcm.OneSignalPush" />
+    </feature>
     <allow-navigation href="http://localhost/*" />
     <allow-navigation href="https://localhost/*" />
     <allow-navigation href="ionic://*" />

@@ -1,4 +1,4 @@
-#Wed Jan 08 13:26:47 EET 2020
-base.0=/home/xbass/Angular/woo4/woo4app/platforms/android/app/build/intermediates/transforms/dexMerger/debug/0
+#Fri Mar 20 10:22:40 EET 2020
+base.0=/home/xbass/Desktop/angular/woo4app/platforms/android/app/build/intermediates/transforms/dexMerger/debug/0
 path.0=classes.dex
 renamed.0=classes.dex

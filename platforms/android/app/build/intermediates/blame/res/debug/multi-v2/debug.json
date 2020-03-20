@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/home/xbass/Angular/woo4/woo4app/platforms/android/app/build/intermediates/res/merged/debug/values_values.arsc.flat",
+            "outputFile": "/home/xbass/Desktop/angular/woo4app/platforms/android/app/build/intermediates/res/merged/debug/values_values.arsc.flat",
             "map": [
                 {
-                    "source": "/home/xbass/Angular/woo4/woo4app/platforms/android/app/src/main/res/values/strings.xml",
+                    "source": "/home/xbass/Desktop/angular/woo4app/platforms/android/app/src/main/res/values/strings.xml",
                     "from": {
                         "startLines": "4,2,3",
                         "startColumns": "4,4,4",

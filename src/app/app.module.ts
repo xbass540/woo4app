@@ -18,7 +18,7 @@ import { LoginPage } from '../pages/login/login';
 import { CheckoutPage } from '../pages/checkout/checkout';
 
 import { HttpModule } from '@angular/http';
-import { PayPal, PayPalPayment, PayPalConfiguration } from '@ionic-native/paypal/ngx';
+import { PayPal } from '@ionic-native/paypal/ngx';
 
 @NgModule({
   declarations: [

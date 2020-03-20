@@ -28,6 +28,9 @@
     },
     "com.paypal.cordova.mobilesdk": {
       "PACKAGE_NAME": "io.ionic.starter"
+    },
+    "onesignal-cordova-plugin": {
+      "PACKAGE_NAME": "io.ionic.starter"
     }
   },
   "dependent_plugins": {

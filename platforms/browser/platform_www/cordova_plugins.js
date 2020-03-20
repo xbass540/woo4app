@@ -65,6 +65,14 @@ module.exports = [
         "clobbers": [
             "PayPalMobile"
         ]
+    },
+    {
+        "file": "plugins/onesignal-cordova-plugin/www/OneSignal.js",
+        "id": "onesignal-cordova-plugin.OneSignal",
+        "pluginId": "onesignal-cordova-plugin",
+        "clobbers": [
+            "OneSignal"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -77,7 +85,8 @@ module.exports.metadata =
     "cordova-plugin-statusbar": "2.4.2",
     "cordova-plugin-whitelist": "1.3.3",
     "card.io.cordova.mobilesdk": "2.1.0",
-    "com.paypal.cordova.mobilesdk": "3.5.0"
+    "com.paypal.cordova.mobilesdk": "3.5.0",
+    "onesignal-cordova-plugin": "2.8.4"
 }
 // BOTTOM OF METADATA
 });

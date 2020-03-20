@@ -9,5 +9,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <amazon:enable-feature android:name="com.amazon.device.messaging" android:required="false" xmlns:amazon="http://schemas.amazon.com/apk/res/android" />
+        <service android:exported="false" android:name="com.onesignal.ADMMessageHandler" />
+        <receiver android:name="com.onesignal.ADMMessageHandler$Receiver" android:permission="com.amazon.device.messaging.permission.SEND">
+            <intent-filter>
+                <action android:name="com.amazon.device.messaging.intent.REGISTRATION" />
+                <action android:name="com.amazon.device.messaging.intent.RECEIVE" />
+                <category android:name="io.ionic.starter" />
+            </intent-filter>
+        </receiver>
     </application>
+    <uses-permission android:name="com.amazon.device.messaging.permission.RECEIVE" />
+    <permission android:name="io.ionic.starter.permission.RECEIVE_ADM_MESSAGE" android:protectionLevel="signature" />
+    <uses-permission android:name="io.ionic.starter.permission.RECEIVE_ADM_MESSAGE" />
 </manifest>

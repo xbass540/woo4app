@@ -55,6 +55,14 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "clobbers": [
         "PayPalMobile"
       ]
+    },
+    {
+      "id": "onesignal-cordova-plugin.OneSignal",
+      "file": "plugins/onesignal-cordova-plugin/www/OneSignal.js",
+      "pluginId": "onesignal-cordova-plugin",
+      "clobbers": [
+        "OneSignal"
+      ]
     }
   ];
   module.exports.metadata = {
@@ -65,6 +73,7 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-ionic-webview": "4.1.3",
     "cordova-plugin-ionic-keyboard": "2.2.0",
     "card.io.cordova.mobilesdk": "2.1.0",
-    "com.paypal.cordova.mobilesdk": "3.5.0"
+    "com.paypal.cordova.mobilesdk": "3.5.0",
+    "onesignal-cordova-plugin": "2.8.4"
   };
 });
