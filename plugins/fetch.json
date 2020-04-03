@@ -52,7 +52,7 @@
   "com.paypal.cordova.mobilesdk": {
     "source": {
       "type": "registry",
-      "id": "com.paypal.cordova.mobilesdk"
+      "id": "com.paypal.cordova.mobilesdk@^3.5.0"
     },
     "is_top_level": true,
     "variables": {}

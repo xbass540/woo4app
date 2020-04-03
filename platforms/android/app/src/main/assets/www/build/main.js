@@ -653,7 +653,7 @@ var CheckoutPage = /** @class */ (function () {
                         var payment = new __WEBPACK_IMPORTED_MODULE_5__ionic_native_paypal_ngx__["c" /* PayPalPayment */](total.toString(), 'USD', 'Description', 'sale');
                         _this.payPal.renderSinglePaymentUI(payment).then(function (response) {
                             // Successfully paid
-                            alert(JSON.stringify(response));
+                            alert(JSON.stringify(response)); //this is for debugging purposes
                             data.line_items = orderItems;
                             //console.log(data);
                             var orderData = {};

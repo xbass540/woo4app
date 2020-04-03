@@ -114,7 +114,7 @@ export class CheckoutPage {
             this.payPal.renderSinglePaymentUI(payment).then((response) => {
               // Successfully paid
 
-              alert(JSON.stringify(response));
+              alert(JSON.stringify(response));//this is for debugging purposes
 
 
               data.line_items = orderItems;
