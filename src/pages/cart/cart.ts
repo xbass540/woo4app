@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ModalController, ViewController } from 'ionic-angular';
+import { NavController, NavParams, ModalController, ViewController, ToastController } from 'ionic-angular';
 import {Storage} from '@ionic/storage';
 import { CheckoutPage } from '../checkout/checkout';
 import { LoginPage } from '../login/login';
@@ -15,7 +15,7 @@ export class CartPage {
   showEmptyCartMessage: boolean = false;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public viewCtrl: ViewController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public viewCtrl: ViewController, public toastController: ToastController) {
 
 
     this.total = 0.0;
@@ -85,5 +85,42 @@ checkout(){
 
 }
 
+
+//cart 
+changeQty(item, i, change){
+
+  let price;
+  
+  if(!item.variation)
+    price = item.product.price;
+  else
+    price = parseFloat(item.variation.price);
+  
+  let  qty = item.qty;
+
+  if(change < 0 && item.qty == 1){
+    return;
+  }
+
+  qty = qty + change;
+  item.qty = qty;
+  item.amount = qty * price;
+
+  this.cartItems[i] = item;
+
+  this.storage.set("cart", this.cartItems).then( ()=> {
+
+    this.toastController.create({
+      message: "Cart Updated.",
+      duration: 2000,
+      showCloseButton: true
+    }).present();
+
+  });
+
+  this.total = (parseFloat(this.total.toString()) + (parseFloat(price.toString()) * change));
+
+
+}
 
 }
