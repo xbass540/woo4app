@@ -10,6 +10,7 @@ webpackJsonp([0],{
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_woocommerce_api__ = __webpack_require__(60);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_woocommerce_api___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_woocommerce_api__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__product_details_product_details__ = __webpack_require__(190);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__search_search__ = __webpack_require__(639);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -23,11 +24,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var HomePage = /** @class */ (function () {
     function HomePage(navCtrl, toastCtrl) {
         var _this = this;
         this.navCtrl = navCtrl;
         this.toastCtrl = toastCtrl;
+        this.searchQuery = "";
         this.page = 1;
         this.WooCommerce = __WEBPACK_IMPORTED_MODULE_2_woocommerce_api__({
             url: "https://woocommerce-251774-1115146.cloudwaysapps.com",
@@ -78,17 +81,24 @@ var HomePage = /** @class */ (function () {
     HomePage.prototype.openProductPage = function (product) {
         this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__product_details_product_details__["a" /* ProductDetailsPage */], { "product": product });
     };
+    //search function
+    HomePage.prototype.onSearch = function (event) {
+        if (this.searchQuery.length > 0) {
+            this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__search_search__["a" /* SearchPage */], { "searchQuery": this.searchQuery });
+        }
+    };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])('productSlides'),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Slides */])
+        __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Slides */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Slides */]) === "function" && _a || Object)
     ], HomePage.prototype, "productSlides", void 0);
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"/home/xbass/Desktop/angular/new-app/new4/woo4app/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Home</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <ion-card>\n    <ion-slides autoplay="3000" pager>\n      <ion-slide *ngFor="let number of [5,6,7,8]"><img src="../assets/imgs/{{number}}.jpg" alt=""></ion-slide>\n         </ion-slides>\n  </ion-card>\n\n  <ion-grid>\n    <ion-row>\n      <ion-slides #productSlides>\n    <ion-slide *ngFor="let product of products">\n      <ion-card no-padding>\n\n        <img [src]="product.featured_src" alt="product-img">\n        <h1 padding center>{{product.title}}</h1>\n        <p padding center [innerHTML]="product.short_description">   </p>\n\n      </ion-card>\n    </ion-slide>\n  </ion-slides>\n      </ion-row>\n  </ion-grid>\n\n\n    <ion-list>\n      <ion-item *ngFor="let product of moreProducts" text-wrap (click)="openProductPage(product)">\n          <ion-thumbnail item-left>\n            <img [src]="product.featured_src" alt="">\n          </ion-thumbnail>\n          <h2>{{product.title}}</h2>\n          <p>\n            <span [innerHTML]="product.short_description.substr(0,50)+\'...\'"></span>\n            <span [innerHTML]="product.price_html"></span>\n          </p>\n\n          <button ion-button icon clear item-right>\n            <ion-icon name="arrow-forward"></ion-icon>\n\n          </button>\n\n      </ion-item>\n\n\n  </ion-list>\n\n  <ion-infinite-scroll (ionInfinite)="loadMoreProducts($event)">\n    <ion-infinite-scroll-content></ion-infinite-scroll-content>\n  </ion-infinite-scroll>\n   \n\n</ion-content> \n'/*ion-inline-end:"/home/xbass/Desktop/angular/new-app/new4/woo4app/src/pages/home/home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"/home/xbass/Desktop/angular/new-app/new4/woo4app/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Home</ion-title>\n  </ion-navbar>\n\n  <ion-toolbar color="danger">\n    <ion-searchbar [(ngModel)]="searchQuery" (search)="onSearch($event)"></ion-searchbar>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n  <ion-card>\n    <ion-slides autoplay="3000" pager>\n      <ion-slide *ngFor="let number of [5,6,7,8]"><img src="../assets/imgs/{{number}}.jpg" alt=""></ion-slide>\n         </ion-slides>\n  </ion-card>\n\n  <ion-grid>\n    <ion-row>\n      <ion-slides #productSlides>\n    <ion-slide *ngFor="let product of products">\n      <ion-card no-padding>\n\n        <img [src]="product.featured_src" alt="product-img">\n        <h1 padding center>{{product.title}}</h1>\n        <p padding center [innerHTML]="product.short_description">   </p>\n\n      </ion-card>\n    </ion-slide>\n  </ion-slides>\n      </ion-row>\n  </ion-grid>\n\n\n    <ion-list>\n      <ion-item *ngFor="let product of moreProducts" text-wrap (click)="openProductPage(product)">\n          <ion-thumbnail item-left>\n            <img [src]="product.featured_src" alt="">\n          </ion-thumbnail>\n          <h2>{{product.title}}</h2>\n          <p>\n            <span [innerHTML]="product.short_description.substr(0,50)+\'...\'"></span>\n            <span [innerHTML]="product.price_html"></span>\n          </p>\n\n          <button ion-button icon clear item-right>\n            <ion-icon name="arrow-forward"></ion-icon>\n\n          </button>\n\n      </ion-item>\n\n\n  </ion-list>\n\n  <ion-infinite-scroll (ionInfinite)="loadMoreProducts($event)">\n    <ion-infinite-scroll-content></ion-infinite-scroll-content>\n  </ion-infinite-scroll>\n   \n\n</ion-content> \n'/*ion-inline-end:"/home/xbass/Desktop/angular/new-app/new4/woo4app/src/pages/home/home.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */]])
+        __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */]) === "function" && _c || Object])
     ], HomePage);
     return HomePage;
+    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=home.js.map
@@ -224,13 +234,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var CartPage = /** @class */ (function () {
-    function CartPage(navCtrl, navParams, storage, viewCtrl, toastController) {
+    function CartPage(navCtrl, navParams, storage, viewCtrl) {
         var _this = this;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.storage = storage;
         this.viewCtrl = viewCtrl;
-        this.toastController = toastController;
         this.cartItems = [];
         this.showEmptyCartMessage = false;
         this.total = 0.0;
@@ -279,39 +288,13 @@ var CartPage = /** @class */ (function () {
             }
         });
     };
-    //cart 
-    CartPage.prototype.changeQty = function (item, i, change) {
-        var _this = this;
-        var price;
-        if (!item.variation)
-            price = item.product.price;
-        else
-            price = parseFloat(item.variation.price);
-        var qty = item.qty;
-        if (change < 0 && item.qty == 1) {
-            return;
-        }
-        qty = qty + change;
-        item.qty = qty;
-        item.amount = qty * price;
-        this.cartItems[i] = item;
-        this.storage.set("cart", this.cartItems).then(function () {
-            _this.toastController.create({
-                message: "Cart Updated.",
-                duration: 2000,
-                showCloseButton: true
-            }).present();
-        });
-        this.total = (parseFloat(this.total.toString()) + (parseFloat(price.toString()) * change));
-    };
     CartPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-cart',template:/*ion-inline-start:"/home/xbass/Desktop/angular/new-app/new4/woo4app/src/pages/cart/cart.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>Your Cart</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n\n  <ion-card>\n    <ion-grid>\n      <ion-row>\n        <ion-col>Your Cart Description</ion-col>\n      </ion-row>\n      <ion-row [hidden]="!showEmptyCartMessage">\n        <ion-col>There are no products in your cart!</ion-col>\n      </ion-row>\n    </ion-grid>\n  </ion-card>\n\n\n  <ion-card *ngFor="let item of cartItems; let i = index">\n    <ion-item color="light">\n\n      <ion-thumbnail item-left>\n        <img [src]="item.product.featured_src" style="width: 60px !important; height: 60px !important;"/>\n      </ion-thumbnail>\n      <h2>{{ item.product.title }}</h2>\n\n      <p *ngIf="item.variation"><span *ngFor="let att of item.variation.attributes">{{ att.option | titlecase }} &nbsp;</span></p>\n\n      <p>{{ item.qty }} • \n        <span *ngIf="!item.variation">{{ item.product.price }}</span>\n        <span *ngIf="item.variation">{{ item.variation.price }}</span></p>\n      <!-- <button ion-button clear item-right color="danger" (click)="removeFromCart(item, i)">\n        <ion-icon name="close-circle"></ion-icon>\n      </button> -->\n\n    </ion-item>\n\n    <ion-item class="compact">\n      <ion-row no-padding>\n        <ion-col col-8>\n          <button ion-button icon-only clear color="danger" (click)="changeQty(item, i, -1)">\n            <ion-icon name="remove-circle"></ion-icon>\n          </button>\n          <button ion-button clear color="danger"> {{ item.qty }} </button>\n          <button ion-button icon-only clear color="danger" (click)="changeQty(item, i, 1)">\n            <ion-icon name="add-circle"></ion-icon>\n          </button>\n        </ion-col>\n        <ion-col col-4 style="text-align: right;">\n          <button ion-button small outline (click)="removeFromCart(item, i)" color="danger" style="width: 64px;">Remove</button>\n        </ion-col>\n      </ion-row>\n    </ion-item>\n  </ion-card>\n\n\n  <ion-grid>\n    <ion-card>\n      <ion-grid>\n        <ion-row>\n          <ion-col col-2>\n\n          </ion-col>\n          <ion-col col-4>\n            <b>TOTAL</b>\n          </ion-col>\n          <ion-col col-3>\n\n          </ion-col>\n          <ion-col col-3 style="text-align: right">\n            <b> {{ total }} </b>\n          </ion-col>\n\n\n        </ion-row>\n      </ion-grid>\n    </ion-card>\n  </ion-grid>\n\n</ion-content>\n\n<ion-footer>\n  <ion-toolbar>\n    <ion-grid>\n      <ion-row>\n        <ion-col>\n          <button ion-button color="danger" outline block (click)="closeModal()">Back</button>\n        </ion-col>\n        <ion-col>\n          <button ion-button color="danger" block (click)="checkout()">Checkout</button>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </ion-toolbar>\n</ion-footer>'/*ion-inline-end:"/home/xbass/Desktop/angular/new-app/new4/woo4app/src/pages/cart/cart.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ViewController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ViewController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */]) === "function" && _e || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ViewController */]])
     ], CartPage);
     return CartPage;
-    var _a, _b, _c, _d, _e;
 }());
 
 //# sourceMappingURL=cart.js.map
@@ -1021,14 +1004,16 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_signup_signup__ = __webpack_require__(355);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_login_login__ = __webpack_require__(192);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_checkout_checkout__ = __webpack_require__(352);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__angular_http__ = __webpack_require__(354);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ionic_native_paypal_ngx__ = __webpack_require__(353);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_search_search__ = __webpack_require__(639);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__angular_http__ = __webpack_require__(354);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__ionic_native_paypal_ngx__ = __webpack_require__(353);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -1060,11 +1045,12 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_11__pages_cart_cart__["a" /* CartPage */],
                 __WEBPACK_IMPORTED_MODULE_12__pages_signup_signup__["a" /* SignupPage */],
                 __WEBPACK_IMPORTED_MODULE_13__pages_login_login__["a" /* LoginPage */],
-                __WEBPACK_IMPORTED_MODULE_14__pages_checkout_checkout__["a" /* CheckoutPage */]
+                __WEBPACK_IMPORTED_MODULE_14__pages_checkout_checkout__["a" /* CheckoutPage */],
+                __WEBPACK_IMPORTED_MODULE_15__pages_search_search__["a" /* SearchPage */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
-                __WEBPACK_IMPORTED_MODULE_15__angular_http__["b" /* HttpModule */],
+                __WEBPACK_IMPORTED_MODULE_16__angular_http__["b" /* HttpModule */],
                 __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* MyApp */], {}, {
                     links: []
                 }),
@@ -1080,12 +1066,13 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_11__pages_cart_cart__["a" /* CartPage */],
                 __WEBPACK_IMPORTED_MODULE_12__pages_signup_signup__["a" /* SignupPage */],
                 __WEBPACK_IMPORTED_MODULE_13__pages_login_login__["a" /* LoginPage */],
-                __WEBPACK_IMPORTED_MODULE_14__pages_checkout_checkout__["a" /* CheckoutPage */]
+                __WEBPACK_IMPORTED_MODULE_14__pages_checkout_checkout__["a" /* CheckoutPage */],
+                __WEBPACK_IMPORTED_MODULE_15__pages_search_search__["a" /* SearchPage */]
             ],
             providers: [
                 __WEBPACK_IMPORTED_MODULE_8__ionic_native_status_bar__["a" /* StatusBar */],
                 __WEBPACK_IMPORTED_MODULE_9__ionic_native_splash_screen__["a" /* SplashScreen */],
-                __WEBPACK_IMPORTED_MODULE_16__ionic_native_paypal_ngx__["a" /* PayPal */],
+                __WEBPACK_IMPORTED_MODULE_17__ionic_native_paypal_ngx__["a" /* PayPal */],
                 { provide: __WEBPACK_IMPORTED_MODULE_1__angular_core__["u" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["c" /* IonicErrorHandler */] }
             ]
         })
@@ -1186,6 +1173,83 @@ var MyApp = /** @class */ (function () {
 /***/ (function(module, exports) {
 
 /* (ignored) */
+
+/***/ }),
+
+/***/ 639:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SearchPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_woocommerce_api__ = __webpack_require__(60);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_woocommerce_api___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_woocommerce_api__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__product_details_product_details__ = __webpack_require__(190);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var SearchPage = /** @class */ (function () {
+    function SearchPage(navCtrl, navParams, toastCtrl) {
+        var _this = this;
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.toastCtrl = toastCtrl;
+        this.searchQuery = "";
+        this.page = 2;
+        console.log(this.navParams.get("searchQuery"));
+        this.searchQuery = this.navParams.get("searchQuery");
+        this.WooCommerce = __WEBPACK_IMPORTED_MODULE_2_woocommerce_api__({
+            url: "https://woocommerce-251774-1115146.cloudwaysapps.com",
+            consumerKey: "ck_6c9779a96e5377a4b28df5a1aca2e8c6dbbfaae3",
+            consumerSecret: "cs_5dc2811ed708448a3dfc889a0921e2e266b25813"
+        });
+        this.WooCommerce.getAsync("products?filter[q]=" + this.searchQuery).then(function (searchData) {
+            _this.products = JSON.parse(searchData.body).products;
+        });
+    }
+    SearchPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad SearchPage');
+    };
+    SearchPage.prototype.loadMoreProducts = function (event) {
+        var _this = this;
+        this.WooCommerce.getAsync("products?filter[q]=" + this.searchQuery + "&page=" + this.page).then(function (searchData) {
+            _this.products = _this.products.concat(JSON.parse(searchData.body).products);
+            if (JSON.parse(searchData.body).products.length < 10) {
+                event.enable(false);
+                _this.toastCtrl.create({
+                    message: "No more products!",
+                    duration: 5000
+                }).present();
+            }
+            event.complete();
+            _this.page++;
+        });
+    };
+    SearchPage.prototype.openProductPage = function (product) {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__product_details_product_details__["a" /* ProductDetailsPage */], { "product": product });
+    };
+    SearchPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-search',template:/*ion-inline-start:"/home/xbass/Desktop/angular/new-app/new4/woo4app/src/pages/search/search.html"*/'<!--\n  Generated template for the SearchPage page.\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Search</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <ion-list>\n    <ion-item *ngFor="let product of products" text-wrap  (click)="openProductPage(product)">\n      <ion-thumbnail item-left>\n        <img [src]="product.featured_src" />\n      </ion-thumbnail>\n\n      <h2> {{ product.title }} </h2>\n\n      <p>\n        <span [innerHTML]="product.short_description.substr(0, 50) + \'...\'"></span>\n        <span [innerHTML]="product.price_html"></span>\n        <span *ngIf="product.average_rating >= 1">\n          <ion-icon style="color: #d4af37" small name="star"></ion-icon>\n        </span>\n        <span *ngIf="product.average_rating >= 2">\n          <ion-icon style="color: #d4af37" small name="star"></ion-icon>\n        </span>\n        <span *ngIf="product.average_rating >= 3">\n          <ion-icon style="color: #d4af37" small name="star"></ion-icon>\n        </span>\n        <span *ngIf="product.average_rating >= 4">\n          <ion-icon style="color: #d4af37" small name="star"></ion-icon>\n        </span>\n        <span *ngIf="product.average_rating >= 5">\n          <ion-icon style="color: #d4af37" small name="star"></ion-icon>\n        </span>\n      </p>\n\n      <button ion-button icon clear item-right>\n        <ion-icon name="arrow-forward"></ion-icon>\n      </button>\n    </ion-item>\n  </ion-list>\n  <ion-infinite-scroll (ionInfinite)="loadMoreProducts($event)">\n    <ion-infinite-scroll-content></ion-infinite-scroll-content>\n  </ion-infinite-scroll>\n</ion-content>'/*ion-inline-end:"/home/xbass/Desktop/angular/new-app/new4/woo4app/src/pages/search/search.html"*/,
+        }),
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */]) === "function" && _c || Object])
+    ], SearchPage);
+    return SearchPage;
+    var _a, _b, _c;
+}());
+
+//# sourceMappingURL=search.js.map
 
 /***/ })
 

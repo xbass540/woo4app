@@ -16,6 +16,7 @@ import { CartPage } from '../pages/cart/cart';
 import { SignupPage } from '../pages/signup/signup';
 import { LoginPage } from '../pages/login/login';
 import { CheckoutPage } from '../pages/checkout/checkout';
+import { SearchPage } from '../pages/search/search';
 
 import { HttpModule } from '@angular/http';
 import { PayPal } from '@ionic-native/paypal/ngx';
@@ -30,7 +31,8 @@ import { PayPal } from '@ionic-native/paypal/ngx';
     CartPage,
     SignupPage,
     LoginPage,
-    CheckoutPage
+    CheckoutPage,
+    SearchPage
   ],
   imports: [
     BrowserModule,
@@ -48,7 +50,8 @@ import { PayPal } from '@ionic-native/paypal/ngx';
     CartPage,
     SignupPage,
     LoginPage,
-    CheckoutPage
+    CheckoutPage,
+    SearchPage
   ],
   providers: [
     StatusBar,
