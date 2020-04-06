@@ -7,32 +7,32 @@
     "files": {}
   },
   "installed_plugins": {
-    "cordova-plugin-whitelist": {
-      "PACKAGE_NAME": "io.ionic.starter"
-    },
-    "cordova-plugin-statusbar": {
-      "PACKAGE_NAME": "io.ionic.starter"
+    "com.paypal.cordova.mobilesdk": {
+      "PACKAGE_NAME": "com.solomondesigns.com"
     },
     "cordova-plugin-device": {
-      "PACKAGE_NAME": "io.ionic.starter"
+      "PACKAGE_NAME": "com.solomondesigns.com"
     },
-    "cordova-plugin-splashscreen": {
-      "PACKAGE_NAME": "io.ionic.starter"
+    "cordova-plugin-ionic-keyboard": {
+      "PACKAGE_NAME": "com.solomondesigns.com"
     },
     "cordova-plugin-ionic-webview": {
       "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+",
-      "PACKAGE_NAME": "io.ionic.starter"
+      "PACKAGE_NAME": "com.solomondesigns.com"
     },
-    "cordova-plugin-ionic-keyboard": {
-      "PACKAGE_NAME": "io.ionic.starter"
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "com.solomondesigns.com"
     },
-    "com.paypal.cordova.mobilesdk": {
-      "PACKAGE_NAME": "io.ionic.starter"
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "com.solomondesigns.com"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "com.solomondesigns.com"
     }
   },
   "dependent_plugins": {
     "card.io.cordova.mobilesdk": {
-      "PACKAGE_NAME": "io.ionic.starter"
+      "PACKAGE_NAME": "com.solomondesigns.com"
     }
   }
 }

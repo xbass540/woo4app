@@ -18,6 +18,7 @@ import { LoginPage } from '../pages/login/login';
 import { CheckoutPage } from '../pages/checkout/checkout';
 
 import { HttpModule } from '@angular/http';
+import { PayPal } from '@ionic-native/paypal/ngx';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { HttpModule } from '@angular/http';
   providers: [
     StatusBar,
     SplashScreen,
+    PayPal,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
