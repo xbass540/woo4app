@@ -20,6 +20,7 @@ import { SearchPage } from '../pages/search/search';
 
 import { HttpModule } from '@angular/http';
 import { PayPal } from '@ionic-native/paypal/ngx';
+import { WoocommerceProvider } from '../providers/woocommerce/woocommerce';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { PayPal } from '@ionic-native/paypal/ngx';
     StatusBar,
     SplashScreen,
     PayPal,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    WoocommerceProvider
   ]
 })
 export class AppModule {}

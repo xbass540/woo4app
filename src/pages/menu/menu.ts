@@ -7,6 +7,7 @@ import * as WC from 'woocommerce-api';
 import {ProductsByCategoryPage} from '../products-by-category/products-by-category';
 import { Storage } from '@ionic/storage';
 import { CartPage } from '../cart/cart';
+import { WoocommerceProvider } from '../../providers/woocommerce/woocommerce';
  /**
  * Generated class for the MenuPage page.
  *
@@ -28,19 +29,13 @@ export class MenuPage {
   loggedIn: boolean;
   user: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public modalCtrl: ModalController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public modalCtrl: ModalController, private WP:WoocommerceProvider) {
 
     this.homePage= HomePage
 
     this.categories=[];
  
-    this.WooCommerce = WC ({
-
-      url:"https://woocommerce-251774-1115146.cloudwaysapps.com",
-      consumerKey: "ck_6c9779a96e5377a4b28df5a1aca2e8c6dbbfaae3",
-      consumerSecret: "cs_5dc2811ed708448a3dfc889a0921e2e266b25813"
-
-  });
+    this.WooCommerce=WP.init();
 
   this.WooCommerce.getAsync("products/categories").then((data) => {
     console.log(JSON.parse(data.body).product_categories);

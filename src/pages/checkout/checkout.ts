@@ -4,6 +4,7 @@ import { Storage } from '@ionic/storage';
 import * as WC from 'woocommerce-api';
 import { HomePage } from '../home/home';
 import { PayPal, PayPalPayment, PayPalConfiguration } from '@ionic-native/paypal/ngx';
+import { WoocommerceProvider } from '../../providers/woocommerce/woocommerce';
 
 @Component({
   selector: 'page-checkout',
@@ -18,7 +19,7 @@ export class CheckoutPage {
   billing_shipping_same: boolean;
   userInfo: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public alertCtrl: AlertController, public payPal: PayPal) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public alertCtrl: AlertController, public payPal: PayPal,  private WP:WoocommerceProvider) {
     this.newOrder = {};
     this.newOrder.billing_address = {};
     this.newOrder.shipping_address = {};
@@ -30,11 +31,8 @@ export class CheckoutPage {
       { method_id: "cod", method_title: "Cash on Delivery" },
       { method_id: "paypal", method_title: "PayPal" }];
 
-    this.WooCommerce = WC({
-        url:"https://woocommerce-251774-1115146.cloudwaysapps.com",
-        consumerKey: "ck_6c9779a96e5377a4b28df5a1aca2e8c6dbbfaae3",
-        consumerSecret: "cs_5dc2811ed708448a3dfc889a0921e2e266b25813"
-    });
+      this.WooCommerce=WP.init();
+
 
     this.storage.get("userLoginInfo").then((userLoginInfo) => {
 

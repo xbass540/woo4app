@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams,  ToastController } from 'ionic-angular';
 import * as WC from 'woocommerce-api';
 import {ProductDetailsPage} from '../product-details/product-details';
+import { WoocommerceProvider } from '../../providers/woocommerce/woocommerce';
 
 @Component({
   selector: 'page-search',
@@ -15,16 +16,13 @@ export class SearchPage {
   moreProducts: any[];
   
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController, private WP:WoocommerceProvider) {
     console.log(this.navParams.get("searchQuery"));
 
     this.searchQuery = this.navParams.get("searchQuery");
 
-    this.WooCommerce = WC({
-      url:"https://woocommerce-251774-1115146.cloudwaysapps.com",
-      consumerKey: "ck_6c9779a96e5377a4b28df5a1aca2e8c6dbbfaae3",
-      consumerSecret: "cs_5dc2811ed708448a3dfc889a0921e2e266b25813"
-    });
+    this.WooCommerce=WP.init();
+
 
     this.WooCommerce.getAsync("products?filter[q]=" + this.searchQuery).then((searchData) => {
       this.products = JSON.parse(searchData.body).products;

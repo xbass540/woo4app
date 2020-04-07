@@ -3,6 +3,8 @@ import { NavController, Slides, ToastController } from 'ionic-angular';
 import * as WC from 'woocommerce-api';
 import { ProductDetailsPage } from '../product-details/product-details';
 import { SearchPage } from '../search/search';
+import { WoocommerceProvider } from '../../providers/woocommerce/woocommerce';
+
 
 @Component({
   selector: 'page-home',
@@ -18,17 +20,11 @@ export class HomePage {
 
   @ViewChild('productSlides') productSlides:Slides;
 
-  constructor(public navCtrl: NavController, public toastCtrl: ToastController) {
+  constructor(public navCtrl: NavController, public toastCtrl: ToastController, private WP:WoocommerceProvider) {
 
     this.page=1;
 
-    this.WooCommerce = WC ({
-
-        url:"https://woocommerce-251774-1115146.cloudwaysapps.com",
-        consumerKey: "ck_6c9779a96e5377a4b28df5a1aca2e8c6dbbfaae3",
-        consumerSecret: "cs_5dc2811ed708448a3dfc889a0921e2e266b25813"
-
-    });
+    this.WooCommerce=WP.init();
 
     this.loadMoreProducts(null);
 
